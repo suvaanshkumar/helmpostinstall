@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: helmpostinstall
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: git@github.com:suvaanshkumar/helmpostinstall.git
+  ref:
+    branch: main
