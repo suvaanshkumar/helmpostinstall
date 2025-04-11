@@ -4,8 +4,8 @@ metadata:
   name: failing-pod
   namespace: testhelmpostinstall
 spec:
-  interval: 1m
-  timeout: 3m
+  interval: 30s
+  timeout: 1m
   install:
     disableWait: true
     remediation:
