@@ -5,9 +5,14 @@ metadata:
   namespace: testhelmpostinstall
 spec:
   interval: 1m
+  timeout: 3m
+  install:
+    disableWait: true
+    remediation:
+      retries: 3
   chart:
     spec:
-      chart: ./charts/helmpostinstall
+      chart: ./charts/
       sourceRef:
         kind: GitRepository
         name: helmpostinstall
