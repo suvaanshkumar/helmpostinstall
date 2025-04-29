@@ -16,4 +16,4 @@ spec:
             - -c
             - |
               echo "Waiting for pod  to be Ready..."
-              kubectl wait --for=condition=Ready pod/testpod --timeout=15s
+              kubectl wait --for=condition=Ready --for=condition=synced LocalNpmRepository.repository.upbound.io/testreconcile --timeout=20s
