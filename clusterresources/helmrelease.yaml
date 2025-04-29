@@ -5,7 +5,7 @@ metadata:
   namespace: testhelmpostinstall
 spec:
   interval: 30s
-  timeout: 1m
+  timeout: 5m
   install:
     disableWait: true
     remediation:
