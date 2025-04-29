@@ -1,9 +1,11 @@
-apiVersion: v1
-kind: Pod
+apiVersion: repository.upbound.io/v1alpha1
+kind: LocalNpmRepository
 metadata:
-  name: testpod
-  namespace: testhelmpostinstall
+  name: localnpmrepository
+  annotations:
+    crossplane.io/external-name: "localnpmrepository#$@#%#@%"
 spec:
-  containers:
-    - name: main
-      image: someinvalidimagename:latest
+  forProvider:
+    description: "new local npm repository"
+  providerConfigRef:
+    name: my-artifactory-providerconfig
