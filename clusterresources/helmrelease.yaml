@@ -5,7 +5,10 @@ metadata:
   namespace: testhelmpostinstall
 spec:
   interval: 30s
-  timeout: 5m
+  timeout: 2m  
+  install:
+    remediation:
+      retries: 3
   driftDetection:
     mode: enabled
   chart:
