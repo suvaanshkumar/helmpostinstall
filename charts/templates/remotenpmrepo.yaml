@@ -1,0 +1,22 @@
+apiVersion: repository.upbound.io/v1alpha1
+kind: RemoteNpmRepository
+metadata:
+  name: testpostinstall
+  annotations:
+    crossplane.io/external-name: "testpostinstall"
+spec:
+  forProvider:
+    description: "new remote npm repository"
+    url: <url>
+    username: <uname>
+    passwordSecretRef:
+      key: password
+      name: secret-read
+      namespace: testhelmpostinstall
+    contentSynchronisation:
+      - enabled:  true
+        propertiesEnabled: true
+        sourceOriginAbsenceDetection:  true
+        statisticsEnabled : true
+  providerConfigRef:
+    name: jfrog-read-providerconfig
