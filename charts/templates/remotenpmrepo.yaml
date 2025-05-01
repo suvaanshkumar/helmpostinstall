@@ -7,11 +7,11 @@ metadata:
 spec:
   forProvider:
     description: "new remote npm repository"
-    url: <url>
-    username: <uname>
+    url: https://amer-write.binrepo.guidewire.net/artifactory/api/npm/testhelmpostinstall
+    username: testhelmpostinstall
     passwordSecretRef:
       key: password
-      name: secret-read
+      name: secret-user
       namespace: testhelmpostinstall
     contentSynchronisation:
       - enabled:  true
@@ -19,4 +19,4 @@ spec:
         sourceOriginAbsenceDetection:  true
         statisticsEnabled : true
   providerConfigRef:
-    name: jfrog-read-providerconfig
+    name: artifactory-providerconfig-read

@@ -1,20 +1,18 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: post-install-check
-  namespace: testhelmpostinstall
+  name: check-postinstall-health2
+  namespace: crossplane-system
 spec:
-  ttlSecondsAfterFinished: 60
   backoffLimit: 3
+  ttlSecondsAfterFinished: 60
   template:
+    metadata:
+      name: check-jfrog-artifactory-provider-health
     spec:
-      restartPolicy: Never
+      serviceAccountName: crossplane
       containers:
-        - name: check
+        - name: check-jfrog-artifactory-provider-health
           image: bitnami/kubectl:latest
-          command:
-            - /bin/sh
-            - -c
-            - |
-              echo "Waiting for pod  to be Ready..."
-              kubectl wait --for=condition=Ready --for=condition=synced LocalNpmRepository.repository.upbound.io/testreconcile --timeout=20s
+          command: [ "kubectl", "wait", "--for=condition=Ready","--for=condition=synced", "RemoteNpmRepository.repository.upbound.io/testpostinstall", "--timeout=90s" ]
+      restartPolicy: Never
