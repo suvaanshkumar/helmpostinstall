@@ -8,7 +8,7 @@ spec:
   forProvider:
     description: "new remote npm repository"
     url: https://amer-write.binrepo.guidewire.net/artifactory/api/npm/testhelmpostinstall
-    username: testhelmpostinstall
+    username: "{{ .Values.username }}"
     passwordSecretRef:
       key: password
       name: secret-user
