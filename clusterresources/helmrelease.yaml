@@ -4,11 +4,14 @@ metadata:
   name: failing-pod
   namespace: testhelmpostinstall
 spec:
+  test:
+    enable: true
+    ignoreFailures: false
   interval: 30s
-  timeout: 2m  
+  timeout: 6m
   install:
     remediation:
-      retries: 3
+      retries: -1
   driftDetection:
     mode: enabled
   chart:
@@ -18,3 +21,5 @@ spec:
         kind: GitRepository
         name: helmpostinstall
         namespace: flux-system
+  values:
+    username: "testhelmpostinsta"
