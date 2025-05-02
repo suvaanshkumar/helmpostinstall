@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: check-postinstall-health2
+  namespace: crossplane-system
+spec:
+  backoffLimit: 1
+  ttlSecondsAfterFinished: 200
+  template:
+    metadata:
+      name: check-jfrog-artifactory-provider-health
+    spec:
+      serviceAccountName: crossplane
+      containers:
+        - name: check-jfrog-artifactory-provider-health
+          image: bitnami/kubectl:latest
+          command: [ "kubectl", "wait", "--for=condition=Ready","--for=condition=synced", "RemoteNpmRepository.repository.upbound.io/testpostinstall", "--timeout=10s" ]
+      restartPolicy: Never
