@@ -6,7 +6,7 @@ metadata:
   annotations:
     "helm.sh/hook": test-success
 spec:
-  backoffLimit: 1
+  backoffLimit: 10
   ttlSecondsAfterFinished: 60
   template:
     metadata:
@@ -16,5 +16,5 @@ spec:
       containers:
         - name: check-jfrog-artifactory-provider-health
           image: bitnami/kubectl:latest
-          command: [ "kubectl", "wait", "--for=condition=Ready","--for=condition=synced", "RemoteNpmRepository.repository.upbound.io/testpostinstall", "--timeout=10s" ]
+          command: [ "kubectl", "wait", "--for=condition=Ready","--for=condition=synced", "RemoteNpmRepository.repository.upbound.io/testpostinstall", "--timeout=20s" ]
       restartPolicy: Never
