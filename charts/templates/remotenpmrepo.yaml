@@ -19,4 +19,4 @@ spec:
         sourceOriginAbsenceDetection:  true
         statisticsEnabled : true
   providerConfigRef:
-    name: artifactory-providerconfig-read
+    name: jfrog-read-providerconfig
