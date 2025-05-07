@@ -3,8 +3,6 @@ kind: Job
 metadata:
   name: check-postinstall-health2
   namespace: crossplane-system
-  annotations:
-    "helm.sh/hook": test-success
 spec:
   backoffLimit: 10
   ttlSecondsAfterFinished: 60
