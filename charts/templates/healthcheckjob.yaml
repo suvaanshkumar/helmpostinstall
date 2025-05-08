@@ -23,7 +23,7 @@ metadata:
   name: check-postinstall-health2
   namespace: crossplane-system
 spec:
-  backoffLimit: 10
+  backoffLimit: 3
   ttlSecondsAfterFinished: 60
   template:
     metadata:
