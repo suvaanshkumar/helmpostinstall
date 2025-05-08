@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: helmpostinstall
-  namespace: flux-system
+  namespace: testhelmpostinstall
 spec:
   interval: 1m
   url: https://github.com/suvaanshkumar/helmpostinstall.git
