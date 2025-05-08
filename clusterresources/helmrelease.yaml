@@ -20,6 +20,6 @@ spec:
       sourceRef:
         kind: GitRepository
         name: helmpostinstall
-        namespace: flux-system
+        namespace: testhelmpostinstall
   values:
-    username: "testhelmpostinsta"
+    username: "testhelmpostinstall"
