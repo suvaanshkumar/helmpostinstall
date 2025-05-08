@@ -37,8 +37,6 @@ spec:
             - /bin/bash
             - -c
             - |
-              if ! kubectl wait --for=condition=Ready --for=condition=synced RemoteNpmRepository.repository.upbound.io/testpostinstall --timeout=20s; then
-                echo "Condition not met within timeout";
-                exit 1;
-              fi
+              kubectl wait --for=condition=Ready RemoteNpmRepository.repository.upbound.io/testpostinstall --timeout=20s && \
+              kubectl wait --for=condition=Synced RemoteNpmRepository.repository.upbound.io/testpostinstall --timeout=20s
       restartPolicy: Never
