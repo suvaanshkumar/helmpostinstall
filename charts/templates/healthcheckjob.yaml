@@ -1,10 +1,29 @@
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: check-postinstall-health2
+#   namespace: crossplane-system
+# spec:
+#   backoffLimit: 5
+#   ttlSecondsAfterFinished: 60
+#   template:
+#     metadata:
+#       name: check-jfrog-artifactory-provider-health
+#     spec:
+#       serviceAccountName: crossplane
+#       containers:
+#         - name: check-jfrog-artifactory-provider-health
+#           image: bitnami/kubectl:latest
+#           command: [ "kubectl", "wait", "--for=condition=Ready","--for=condition=synced", "RemoteNpmRepository.repository.upbound.io/testpostinstall", "--timeout=20s" ]
+#       restartPolicy: Never
+
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: check-postinstall-health2
   namespace: crossplane-system
 spec:
-  backoffLimit: 5
+  backoffLimit: 10
   ttlSecondsAfterFinished: 60
   template:
     metadata:
@@ -14,5 +33,12 @@ spec:
       containers:
         - name: check-jfrog-artifactory-provider-health
           image: bitnami/kubectl:latest
-          command: [ "kubectl", "wait", "--for=condition=Ready","--for=condition=synced", "RemoteNpmRepository.repository.upbound.io/testpostinstall", "--timeout=20s" ]
+          command:
+            - /bin/bash
+            - -c
+            - |
+              if ! kubectl wait --for=condition=Ready --for=condition=synced RemoteNpmRepository.repository.upbound.io/testpostinstall --timeout=20s; then
+                echo "Condition not met within timeout";
+                exit 1;
+              fi
       restartPolicy: Never
